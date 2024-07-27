@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CipherMate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <video id="background-video" autoplay muted loop>
+        <source src="{{ url_for('static', filename='background.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+        <h1><span class="Heading">CipherMate</span></h1>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul class="messages">
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        <div class="cards">
+            <div class="card" data-tilt>
+                <h2>Encrypt</h2>
+                <form action="{{ url_for('encrypt') }}" method="POST">
+                    <textarea id="input_text" name="input_text" rows="10" placeholder="Enter text to encrypt..."></textarea>
+                    <button type="submit">Encrypt</button>
+                </form>
+            </div>
+            <div class="card" data-tilt>
+                <h2>Decrypt</h2>
+                <form action="{{ url_for('decrypt') }}" method="POST">
+                    <textarea id="input_text" name="input_text" rows="10" placeholder="Enter text to decrypt..."></textarea>
+                    <button type="submit">Decrypt</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script>
+        VanillaTilt.init(document.querySelectorAll('.card'), {
+            max: 25,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5
+        });
+    </script>
+</body>
+</html>

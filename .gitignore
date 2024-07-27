@@ -1,0 +1,24 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment
+venv/
+
+# Flask
+instance/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Misc
+.DS_Store
+*.log
+
+# Environment variables
+.env
